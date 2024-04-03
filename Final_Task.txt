@@ -1,0 +1,83 @@
+// «адача:
+// Ќаписать программу, котора€ из имеющегос€ массива строк формирует новый массив из строк,
+// длина которых меньше, либо равна 3 символам. ѕервоначальный массив можно ввести с клавиатуры,
+// либо задать на старте выполнени€ алгоритма. ѕри решении не рекомендуетс€ пользоватьс€ коллекци€ми,
+// лучше обойтись исключительно массивами.
+
+// ѕримеры:
+
+// [УHelloФ, У2Ф, УworldФ, У:-)Ф] > [У2Ф, У:-)Ф]
+// [У1234Ф, У1567Ф, У-2Ф, Уcomputer scienceФ] > [У-2Ф]
+// [УRussiaФ, УDenmarkФ, УKazanФ] > []
+
+Commands();
+string[] array = new string[] {};
+
+string fromUser = ReadInput("¬ведите команду: ");
+switch (fromUser)
+{
+    case "1":
+        array = new string[] { "Hello", "2", "world", ":-)" };
+        break;
+    case "2":
+        array = new string[] { "1234", "1567", "-2", "computer science" };
+        break;
+    case "3":
+        array = new string[] { "Russia", "Denmark", "Kazan" };
+        break;
+    default:
+        Console.WriteLine($"{fromUser} - “акой команды нет");
+        break;
+}
+
+
+int lenNewArray = 0;
+for (int i = 0; i <= array.Length - 1; i++)
+{
+    if (array[i].Length <= 3) lenNewArray++;
+}
+
+string[] newArray = new string[lenNewArray];
+int idx = 0;
+
+for (int i = 0; i <= array.Length - 1; i++)
+{
+    if (array[i].Length <= 3)
+    {
+        newArray[idx] = array[i];
+        idx++;
+    }
+}
+
+PrintArray(array);
+Console.Write("> ");
+PrintArray(newArray);
+
+// ‘ункци€: ¬ывод команд дл€ работы с программой
+void Commands()
+{
+    Console.WriteLine();
+    Console.WriteLine("—ѕ»—ќ   ќћјЌƒ:");
+    Console.WriteLine("1 Ц использовать массив: [УHelloФ, У2Ф, УworldФ, У:-)Ф]");
+    Console.WriteLine("2 Ц использовать массив: [У1234Ф, У1567Ф, У-2Ф, Уcomputer scienceФ]");
+    Console.WriteLine("3 Ц использовать массив: [УRussiaФ, УDenmarkФ, УKazanФ]");
+    Console.WriteLine();
+}
+
+// ‘ункци€ ввода
+string ReadInput(string msg)
+{
+    Console.Write(msg);
+    return Console.ReadLine();
+}
+
+//  ‘ункци€ вывода массива в терминал
+void PrintArray(string[] array)
+{
+    Console.Write("[ ");
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write($"У{array[i]}Ф, ");
+    }
+    Console.Write("] ");
+}
